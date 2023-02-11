@@ -1,0 +1,164 @@
+{
+	"info": {
+		"_postman_id": "6ddfbd8d-ab1e-40b6-bb0e-9d45e010272e",
+		"name": "雨量站爬蟲",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25654792"
+	},
+	"item": [
+		{
+			"name": "舊版雨量站(年雨量_月報表)",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"// 設定測站，例如關廟\r",
+							"stationData = {\r",
+							"    name: '關廟',\r",
+							"    id: 'C0X170',\r",
+							"    altitude: '50.0m'\r",
+							"}\r",
+							"encodingName = encodeURI(encodeURI(stationData.name))  // 舊版做了兩次encoding\r",
+							"\r",
+							"pm.collectionVariables.set(\"stationId\", stationData.id);\r",
+							"pm.collectionVariables.set(\"stationAltitude\", stationData.altitude)\r",
+							"pm.collectionVariables.set(\"stationEncodingName\", encodingName)\r",
+							"\r",
+							"// 查詢動作與年份\r",
+							"COMMAND = 'viewMain'\r",
+							"queryYear = 2022\r",
+							"pm.collectionVariables.set(\"command\", COMMAND);\r",
+							"pm.collectionVariables.set(\"queryYear\", queryYear);\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://e-service.cwb.gov.tw/HistoryDataQuery/YearDataController.do?command={{command}}&station={{stationId}}&altitude={{stationAltitude}}&stname={{stationEncodingName}}&datepicker={{queryYear}}",
+					"protocol": "https",
+					"host": [
+						"e-service",
+						"cwb",
+						"gov",
+						"tw"
+					],
+					"path": [
+						"HistoryDataQuery",
+						"YearDataController.do"
+					],
+					"query": [
+						{
+							"key": "command",
+							"value": "{{command}}"
+						},
+						{
+							"key": "station",
+							"value": "{{stationId}}"
+						},
+						{
+							"key": "altitude",
+							"value": "{{stationAltitude}}"
+						},
+						{
+							"key": "stname",
+							"value": "{{stationEncodingName}}"
+						},
+						{
+							"key": "datepicker",
+							"value": "{{queryYear}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "新版雨量站(年雨量_月報表)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "date",
+							"value": "2021-01-01T00%3A00%3A00.000%2B08%3A00",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "type",
+							"value": "table_year",
+							"type": "text"
+						},
+						{
+							"key": "stn_ID",
+							"value": "C0X170",
+							"type": "text"
+						},
+						{
+							"key": "stn_type",
+							"value": "auto_C0",
+							"type": "text"
+						},
+						{
+							"key": "start",
+							"value": "2021-01-01T00:00:00",
+							"type": "text"
+						},
+						{
+							"key": "end",
+							"value": "2021-12-31T00:00:00",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://codis.cwb.gov.tw/api/station",
+					"protocol": "https",
+					"host": [
+						"codis",
+						"cwb",
+						"gov",
+						"tw"
+					],
+					"path": [
+						"api",
+						"station"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "stationId",
+			"value": ""
+		},
+		{
+			"key": "stationAltitude",
+			"value": ""
+		},
+		{
+			"key": "stationEncodingName",
+			"value": ""
+		},
+		{
+			"key": "command",
+			"value": ""
+		},
+		{
+			"key": "queryYear",
+			"value": ""
+		}
+	]
+}

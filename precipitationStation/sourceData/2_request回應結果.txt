@@ -1,0 +1,252 @@
+{
+  DataYearMonth: '2021-01-01T00:00:00',  // 1. 觀測時間
+  PeakGust: {
+    Direction: 340,  // 15. 最大陣風風向
+    Directionf: null,
+    Directionq: null,
+    Maximum: 11.7,  // 14. 最大陣風
+    MaximumTime: '2021-01-28T16:20:00',  // 16. 最大陣風風速時間
+    MaximumTimef: null,
+    MaximumTimeq: null,
+    Maximumf: null,
+    Maximumq: null
+  },
+  Precipitation: {
+    PrecipitationDays: 1,  // 18. 降水日數
+    PrecipitationDaysFlag: 1,
+    PrecipitationDaysFlagf: null,
+    PrecipitationDaysFlagq: null,
+    PrecipitationDaysf: null,
+    PrecipitationDaysq: null,
+    Accumulation: 3,  // 17. 累積降水量
+    Accumulationf: null,
+    Accumulationq: null,
+    DailyMaximum: 3,  // 19. 最大日降水量
+    DailyMaximumDate: '2021-01-22T00:00:00',  // 20. 最大降水量時刻表
+    DailyMaximumDatef: null,
+    DailyMaximumDateq: null,
+    DailyMaximumFlag: 1,
+    DailyMaximumFlagf: null,
+    DailyMaximumFlagq: null,
+    DailyMaximumf: null,
+    DailyMaximumq: null,
+    Flag: 1,
+    Flagf: null,
+    Flagq: null,
+    HourlyMaximum: 2,
+    HourlyMaximumFlag: 1,
+    HourlyMaximumFlagf: null,
+    HourlyMaximumFlagq: null,
+    HourlyMaximumTime: '2021-01-22T14:00:00',
+    HourlyMaximumTimef: null,
+    HourlyMaximumTimeq: null,
+    HourlyMaximumf: null,
+    HourlyMaximumq: null,
+    MeltFlag: 0,
+    MeltFlagf: null,
+    MeltFlagq: null
+  },
+  RelativeHumidity: {
+    Maximum: 99,
+    MaximumTime: '2021-01-27T06:11:00',
+    MaximumTimef: null,
+    MaximumTimeq: null,
+    Maximumf: null,
+    Maximumq: null,
+    Mean: 78,  // 21. 平均相對濕度
+    Meanf: null,
+    Meanq: null,
+    Minimum: 26,
+    MinimumTime: '2021-01-13T13:41:00',
+    MinimumTimef: null,
+    MinimumTimeq: null,
+    Minimumf: null,
+    Minimumq: null
+  },
+  StationPressure: {
+    Maximum: 1019,  // 3. 測站最高氣壓
+    MaximumTime: '2021-01-01T08:21:00',  // 4. 測站最高氣壓時間
+    MaximumTimef: null,
+    MaximumTimeq: null,
+    Maximumf: null,
+    Maximumq: null,
+    Mean: 1012.2,  // 2. 測站平均氣壓
+    Meanf: null,
+    Meanq: null,
+    Minimum: 1002.2,  // 5. 測站最低氣壓
+    MinimumTime: '2021-01-22T16:31:00',  // 6. 測站最低氣壓時間
+    MinimumTimef: null,
+    MinimumTimeq: null,
+    Minimumf: null,
+    Minimumq: null
+  },
+  SunshineDuration: {
+    Total: null,
+    Totalf: null,
+    Totalq: null,
+    Flag: 1,
+    Flagf: null,
+    Flagq: null
+  },
+  AirTemperature: {
+    Maximum: 29.5,  // 8. 最高氣溫
+    MaximumTime: '2021-01-21T13:17:00',  // 9. 最低氣溫時間
+    MaximumTimef: null,
+    MaximumTimeq: null,
+    Maximumf: null,
+    Maximumq: null,
+    Mean: 16.6,  // 7. 平均氣溫
+    Meanf: null,
+    Meanq: null,
+    Minimum: 7.1,  // 10. 最低氣溫
+    MinimumTime: '2021-01-10T07:05:00',  // 11. 最低氣溫時間
+    MinimumTimef: null,
+    MinimumTimeq: null,
+    Minimumf: null,
+    Minimumq: null
+  },
+  UpdateTime: '2021-09-03T23:16:45',
+  WindDirection: {
+    Prevailing: 35, // 13. 風向
+    Prevailingf: null,
+    Prevailingq: null
+  },
+  WindSpeed: {
+    Flag: 1,
+    Flagf: null,
+    Flagq: null,
+    Mean: 1.5,  // 12. 風速
+    Meanf: null,
+    Meanq: null
+  },
+  GlobalSolarRadiation: {
+    Accumulation: null,
+    Accumulationq: null,
+    Accumulationf: null,
+    HourlyMaximum: null,
+    HourlyMaximumf: null,
+    HourlyMaximumq: null,
+    HourlyMaximumTime: null,
+    HourlyMaximumTimef: null,
+    HourlyMaximumTimeq: null
+  },
+  SoilTemperatureAt0cm: {
+    Mean: null,
+    Meanf: null,
+    Meanq: null,
+    Maximum: null,
+    Maximumf: null,
+    Maximumq: null,
+    MaximumTime: null,
+    MaximumTimef: null,
+    MaximumTimeq: null,
+    Minimum: null,
+    Minimumf: null,
+    Minimumq: null,
+    MinimumTime: null,
+    MinimumTimef: null,
+    MinimumTimeq: null
+  },
+  SoilTemperatureAt5cm: {
+    Mean: null,
+    Meanf: null,
+    Meanq: null,
+    Maximum: null,
+    Maximumf: null,
+    Maximumq: null,
+    MaximumTime: null,
+    MaximumTimef: null,
+    MaximumTimeq: null,
+    Minimum: null,
+    Minimumf: null,
+    Minimumq: null,
+    MinimumTime: null,
+    MinimumTimef: null,
+    MinimumTimeq: null
+  },
+  SoilTemperatureAt10cm: {
+    Mean: null,
+    Meanf: null,
+    Meanq: null,
+    Maximum: null,
+    Maximumf: null,
+    Maximumq: null,
+    MaximumTime: null,
+    MaximumTimef: null,
+    MaximumTimeq: null,
+    Minimum: null,
+    Minimumf: null,
+    Minimumq: null,
+    MinimumTime: null,
+    MinimumTimef: null,
+    MinimumTimeq: null
+  },
+  SoilTemperatureAt20cm: {
+    Mean: null,
+    Meanf: null,
+    Meanq: null,
+    Maximum: null,
+    Maximumf: null,
+    Maximumq: null,
+    MaximumTime: null,
+    MaximumTimef: null,
+    MaximumTimeq: null,
+    Minimum: null,
+    Minimumf: null,
+    Minimumq: null,
+    MinimumTime: null,
+    MinimumTimef: null,
+    MinimumTimeq: null
+  },
+  SoilTemperatureAt50cm: {
+    Mean: null,
+    Meanf: null,
+    Meanq: null,
+    Maximum: null,
+    Maximumf: null,
+    Maximumq: null,
+    MaximumTime: null,
+    MaximumTimef: null,
+    MaximumTimeq: null,
+    Minimum: null,
+    Minimumf: null,
+    Minimumq: null,
+    MinimumTime: null,
+    MinimumTimef: null,
+    MinimumTimeq: null
+  },
+  SoilTemperatureAt100cm: {
+    Mean: null,
+    Meanf: null,
+    Meanq: null,
+    Maximum: null,
+    Maximumf: null,
+    Maximumq: null,
+    MaximumTime: null,
+    MaximumTimef: null,
+    MaximumTimeq: null,
+    Minimum: null,
+    Minimumf: null,
+    Minimumq: null,
+    MinimumTime: null,
+    MinimumTimef: null,
+    MinimumTimeq: null
+  },
+  GrassTemperature: {
+    Mean: null,
+    Meanf: null,
+    Meanq: null,
+    Maximum: null,
+    Maximumf: null,
+    Maximumq: null,
+    MaximumTime: null,
+    MaximumTimef: null,
+    MaximumTimeq: null,
+    Minimum: null,
+    Minimumf: null,
+    Minimumq: null,
+    MinimumTime: null,
+    MinimumTimef: null,
+    MinimumTimeq: null
+  }
+}

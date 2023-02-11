@@ -1,0 +1,38 @@
+// 根據雨量站 csv 標頭，將 response 結果做過濾
+{
+  DataYearMonth: '2021-01-01T00:00:00',  // 1. 觀測時間
+  StationPressure: {
+    Mean: 1012.2,  // 2. 測站平均氣壓
+    Maximum: 1019,  // 3. 測站最高氣壓
+    MaximumTime: '2021-01-01T08:21:00',  // 4. 測站最高氣壓時間
+    Minimum: 1002.2,  // 5. 測站最低氣壓
+    MinimumTime: '2021-01-22T16:31:00',  // 6. 測站最低氣壓時間
+  },
+  AirTemperature: {
+    Mean: 16.6,  // 7. 平均氣溫
+    Maximum: 29.5,  // 8. 最高氣溫
+    MaximumTime: '2021-01-21T13:17:00',  // 9. 最低氣溫時間
+    Minimum: 7.1,  // 10. 最低氣溫
+    MinimumTime: '2021-01-10T07:05:00',  // 11. 最低氣溫時間
+  },
+  WindSpeed: {
+    Mean: 1.5,  // 12. 風速
+  },
+  WindDirection: {
+    Prevailing: 35, // 13. 風向
+  },
+    PeakGust: {
+    Maximum: 11.7,  // 14. 最大陣風
+    Direction: 340,  // 15. 最大陣風風向
+    MaximumTime: '2021-01-28T16:20:00',  // 16. 最大陣風風速時間
+  },
+  Precipitation: {
+    Accumulation: 3,  // 17. 累積降水量
+    PrecipitationDays: 1,  // 18. 降水日數
+    DailyMaximum: 3,  // 19. 最大日降水量
+    DailyMaximumDate: '2021-01-22T00:00:00',  // 20. 最大降水量時刻表
+  },
+  RelativeHumidity: {
+    Mean: 78,  // 21. 平均相對濕度
+  },
+}
