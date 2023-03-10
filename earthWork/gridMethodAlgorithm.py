@@ -8,8 +8,10 @@ def findDeltaValue(deltaArray):
     return stats.mode(deltaArray, keepdims=True)[0][0]  # 找眾數
 
 
-path = './sourceData/elevationData.txt'
-elevationData = np.loadtxt(path, skiprows=1)
+path = './sourceData/'
+fileName = 'B區點位.csv'
+elevationData = np.genfromtxt(f"{path}{fileName}", delimiter=',', skip_header = 1, usecols = (2, 3, 4))
+# elevationData = np.loadtxt(path, skiprows=1)
 
 # 排序
 elevationData = elevationData[np.lexsort(
@@ -52,4 +54,4 @@ for row in range(elevationArr.shape[0] - 1):
             continue
         result.append(elevations)
 
-np.savetxt('result.csv', result, delimiter=',', fmt='%.3f')
+np.savetxt(fileName, result, delimiter=',', fmt='%.3f')
