@@ -1,6 +1,13 @@
 ## 專案說明
 本專案用於數量計算表改善，利用 VBA 協助處理數量計算
 
+### 專案開發注意事項
+以下開發方式目前屬於測試階段(20230417)
+1. 程式碼撰寫是以 Excel VBA IDE 開發。
+2. 版控則是利用 VSCode 套件: XVBA - Live Server VBA。
+* 一邊開著 Excel，一邊開著 XVBA Live Server，後者必須先載入該 Excel 才能順利匯出 VBA 內容，且後者在開發過程就只是開著，不會在 VSCode 編輯程式碼。
+* 但 VBA IDE 匯出是以 Big5 匯出，不確定上傳至 GitHub 會不會有編碼問題，這要後續觀察。
+
 ### vba package 說明
 1. JsonConvertre
 a). 要先開啟 VBA -> 工具 -> 設定引用項目 -> 勾選「microsoft scripting runtime」
