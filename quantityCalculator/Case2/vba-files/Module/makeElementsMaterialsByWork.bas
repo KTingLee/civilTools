@@ -12,7 +12,7 @@ Sub makeElementsMaterialsByWork()
     End If
 
     Dim workElementsSheet As Worksheet
-    Set workElementsSheet = activateAndSelectSheet(workElementSheetParamRange.Value)  '把计纗
+    Set workElementsSheet = activateAndSelectSheet(workElementSheetParamCell.Value)  '把计纗
 
     'ミ参俱
     Dim targetSheet As Worksheet
@@ -134,6 +134,7 @@ Function getWorkList(workElementMaterialsRange As Range) As Range
     Set noBackgroundColorRange = filterCells(workElementMaterialsRange, xlFilterNoFill)
     Set getWorkList = Difference(workElementMaterialsRange, noBackgroundColorRange)
 End Function
+
 
 
 
