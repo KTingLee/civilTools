@@ -27,6 +27,12 @@ Function getElementsAndMaterialsRangeByWork(workNo As Integer, workElementsSheet
     '取得該工程的所有元件與材料
     Dim workRange As Range
     Set workRange = getWorkRange(workNo, itemTitleCell)
+    If workRange Is Nothing Then
+        MsgBox ("請確認工程編號是否存在")  'TODO: 暫時做一個錯誤處理，之後有心力在來看怎麼改比較好
+        Set getElementsAndMaterialsRangeByWork = workRange
+        Exit Function
+    End If
+    
     Dim rangeDiff As Integer: rangeDiff = quantityCell.Column - workRange.Column
     Set workRange = workRange.Resize(workRange.Rows.Count, workRange.Columns.Count + rangeDiff)  '橫向擴展至單位範圍
     
@@ -39,6 +45,11 @@ Function getObjectUnitCell(objectName As String, workRange As Range) As Range
     '找出元件或材料的儲存格(分兩種座標，一個是在workRange，另一個是在原始sheet中的座標)
     Dim objectCell As Range
     Set objectCell = findCellByValueInRange(objectName, workRange)
+    
+    If objectCell Is Nothing Then
+        Set getObjectUnitCell = objectCell  'TODO: 暫時做一個錯誤處理，之後有心力在來看怎麼改比較好
+        Exit Function
+    End If
     
     '透過元件、材料本身的工作表去找單位欄位，因為workRange不含單位標頭列
     Dim indexCell As Range
@@ -89,8 +100,8 @@ Sub calMaterialsQuantityByElement()
     Set workNoParamCell = getParamCell("workNoParam", "請設定目標工程編號")
     
     
-    If Not isSheetExist(workElementSheetParamCell.Value) Or Not isSheetExist(elementsQuantitySheetParamCell.Value) Then
-        MsgBox ("請確認元件表或工程數量統計表是否正確")
+    If Not isSheetExist(workElementSheetParamCell.Value) Or Not isSheetExist(elementsQuantitySheetParamCell.Value) Or IsEmpty(workNoParamCell) Then
+        MsgBox ("請確認元件表或工程數量統計表、工程編號是否正確")
         Exit Sub
     End If
 
@@ -106,6 +117,9 @@ Sub calMaterialsQuantityByElement()
     
     Dim workRange As Range
     Set workRange = getElementsAndMaterialsRangeByWork(workNoParamCell.Value, workElementSheetParamCell.Value)  '傳入工程編號、元件表，以選取工程元件材料範圍
+    If workRange Is Nothing Then
+        Exit Sub  'TODO: 暫時做一個錯誤處理，之後有心力在來看怎麼改比較好
+    End If
     
     '處理材料單位
     Dim material As Range
@@ -114,6 +128,12 @@ Sub calMaterialsQuantityByElement()
     For Each material In materialsList
         materialName = material.Value
         Set unitCell = getObjectUnitCell(materialName, workRange)
+        
+        If unitCell Is Nothing Then
+            MsgBox ("在當前工程編號中似乎沒有使用: " & materialName)  'TODO: 暫時做一個錯誤處理，之後有心力在來看怎麼改比較好
+            Exit Sub
+        End If
+        
         elementsQuantitySheet.Cells(material.Row, material.Column + 1).Formula = "=" & unitCell.Worksheet.Name & "!" & unitCell.Address
     Next
     
@@ -125,12 +145,14 @@ Sub calMaterialsQuantityByElement()
     Dim elementQuantityCell As Range
     Dim materialQuantityCell As Range
     Do While Not element.MergeCells  '總計欄位是合併儲存格，與元件儲存格格式不同
+        '處理元件單位
         elementName = element.Value
         Set unitCell = getObjectUnitCell(elementName, workRange)
         
         Set elementQuantityCell = element.Offset(1, 0)
         elementQuantityCell.NumberFormatLocal = "0" & """" & unitCell.Value & """"  'TODO: 單位處理後面抽出來
         
+        '開始計算元件的材料數量
         For Each material In materialsList
         
             materialName = material.Value
@@ -150,9 +172,6 @@ Sub calMaterialsQuantityByElement()
         
         '下一個元件
         Set element = element.Offset(0, 1)
-    Loop  'Loop 結尾
-    'If rng.MergeCells
-    
-    
-    
+    Loop
+    MsgBox ("完成")
 End Sub
