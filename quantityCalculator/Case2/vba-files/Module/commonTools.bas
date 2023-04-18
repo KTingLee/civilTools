@@ -17,7 +17,7 @@ Function getLastRow() As Range
     Set getLastRow = Cells(Rows.Count, 1).End(xlUp)
 End Function
 
-'自定義find
+'自定義find(工作表全域搜尋)
 Function findCellByValue(keyWord As Variant, Optional sheetName As Variant) As Range
     Dim searchSheet As Variant
     If IsMissing(sheetName) Then  '注意，isMissing 主要用於 Variant 參數
@@ -35,6 +35,18 @@ Function findCellByValue(keyWord As Variant, Optional sheetName As Variant) As R
     )
 End Function
 
+'自定義find(工作表依範圍搜尋)
+Function findCellByValueInRange(keyWord As Variant, searchRange As Range) As Range
+    Set findCellByValueInRange = searchRange.Find( _
+        What:=keyWord, _
+        LookIn:=xlValues, _
+        LookAt:=xlWhole, _
+        SearchOrder:=xlByRows, _
+        SearchDirection:=xlNext _
+    )
+End Function
+
+
 '檢查目標工作表是否存在
 Function isSheetExist(sheetName As String) As Boolean
     Dim ws As Worksheet
@@ -48,7 +60,17 @@ Function isSheetExist(sheetName As String) As Boolean
     Next
 End Function
 
-'切換至指定工作表
+'建立工作表(並回傳該工作表)
+Function createSheet(sheetName As String) As Worksheet
+    If Not isSheetExist(sheetName) Then
+        Set createSheet = ThisWorkbook.Sheets.Add
+        createSheet.Name = sheetName
+    Else
+        Set createSheet = ThisWorkbook.Worksheets(sheetName)
+    End If
+End Function
+
+'切換至指定工作表(並回傳該工作表)
 Function activateAndSelectSheet(sheetName As String) As Worksheet
     Set activateAndSelectSheet = ThisWorkbook.Sheets(sheetName)
     activateAndSelectSheet.Activate
@@ -103,11 +125,50 @@ Function integerSplit(ByVal num As Integer) As Object
     Set integerSplit = JsonConverter.ParseJson(result)
 End Function
 
+'ChatGPT提供的差集函式
+Function Difference(rng1 As Range, rng2 As Range) As Range
+    Dim cell As Range, checkCell As Range
+    Dim result As Range
+    Dim overlap As Boolean
+    
+    For Each cell In rng1
+        overlap = False
+        For Each checkCell In rng2
+            If cell.Address = checkCell.Address Then
+                overlap = True
+                Exit For
+            End If
+        Next checkCell
+        If Not overlap Then
+            If result Is Nothing Then
+                Set result = cell
+            Else
+                Set result = Application.Union(result, cell)
+            End If
+        End If
+    Next cell
+    
+    Set Difference = result
+End Function
 
-Sub test33()
-'Debug.Print num2Tc(21)
-'Set res = integerSplit(21)
-'Debug.Print res("restNum")
-res = getLastRow()
-Debug.Print res
-End Sub
+'ChatGPT提供的差集函式2
+Function Difference2(rng1 As Range, rng2 As Range) As Range
+    Dim cell As Range, rngTemp As Range
+    Set rngTemp = rng1.Cells(1, 1).EntireRow.Columns(1)  '感覺這個entireRow有點不妙
+    For Each cell In rng1
+        If Intersect(cell, rng2) Is Nothing Then
+            Set rngTemp = Union(rngTemp, cell)
+        End If
+    Next cell
+    Set Difference2 = Intersect(rngTemp, rng1)
+End Function
+
+'ChatGPT提供的參數檢查函數
+Function getParamCell(ByVal cellName As String, ByVal errMsg As String) As Range
+    Dim paramCell As Range
+    Set paramCell = Range(cellName)
+    If IsEmpty(paramCell) Then
+        MsgBox (errMsg)
+    End If
+    Set getParamCell = paramCell
+End Function
