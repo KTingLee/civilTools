@@ -121,6 +121,12 @@ Sub calMaterialsQuantityByElement()
         Exit Sub  'TODO: 暫時做一個錯誤處理，之後有心力在來看怎麼改比較好
     End If
     
+    '材料不能為空
+    If materialsList.Count > workRange.Count Then
+        MsgBox ("請將材料填入工程數量統計表")
+        Exit Sub
+    End If
+    
     '處理材料單位
     Dim material As Range
     Dim materialName As String
