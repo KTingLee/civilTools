@@ -155,6 +155,11 @@ Sub calMaterialsQuantityByElement()
         elementName = element.Value
         Set unitCell = getObjectUnitCell(elementName, workRange)
         
+        If unitCell Is Nothing Then
+            MsgBox ("在當前工程編號中似乎沒有使用: " & elementName)
+            Exit Sub
+        End If
+        
         Set elementQuantityCell = element.Offset(1, 0)
         elementQuantityCell.NumberFormatLocal = "0" & """" & unitCell.Value & """"  'TODO: 單位處理後面抽出來
         
