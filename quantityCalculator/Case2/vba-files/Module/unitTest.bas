@@ -42,3 +42,15 @@ Sub testRangeName()
     Set testRange = Range("elementsMaterialSheetParam")
     Debug.Print testRange.Value
 End Sub
+
+'測試能否順利取得元件小計
+Sub testGetElementQuantity()
+    Dim workRange As Range
+    Set workRange = Range(Cells(7, 1), Cells(17, 6))
+    
+    Dim materialName As String: materialName = "橋台"
+    Dim elementName As String: elementName = "橋台"
+    Dim materialQuantityCell As Range
+    Set materialQuantityCell = getMaterialQuantityCell(materialName, elementName, workRange)
+    materialQuantityCell.Select
+End Sub

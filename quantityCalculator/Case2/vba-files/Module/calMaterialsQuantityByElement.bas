@@ -113,7 +113,7 @@ Sub calMaterialsQuantityByElement()
     
     Dim materialsList As Range
     Set materialsList = getMaterialsInCurrentWork
-    materialsList.Select
+    'materialsList.Select
     
     Dim workRange As Range
     Set workRange = getElementsAndMaterialsRangeByWork(workNoParamCell.Value, workElementSheetParamCell.Value)  '傳入工程編號、元件表，以選取工程元件材料範圍
@@ -149,19 +149,26 @@ Sub calMaterialsQuantityByElement()
     
     Dim elementName As String
     Dim elementQuantityCell As Range
+    Dim elementQuantitySourceCell As Range
     Dim materialQuantityCell As Range
     Do While Not element.MergeCells  '總計欄位是合併儲存格，與元件儲存格格式不同
-        '處理元件單位
+        '處理元件單位及元件小計
         elementName = element.Value
         Set unitCell = getObjectUnitCell(elementName, workRange)
-        
         If unitCell Is Nothing Then
             MsgBox ("在當前工程編號中似乎沒有使用: " & elementName)
             Exit Sub
         End If
-        
+
         Set elementQuantityCell = element.Offset(1, 0)
         elementQuantityCell.NumberFormatLocal = "0" & """" & unitCell.Value & """"  'TODO: 單位處理後面抽出來
+        
+        '取得元件小計值，當元件小計有值，便對應
+        Set elementQuantitySourceCell = getMaterialQuantityCell(elementName, elementName, workRange)
+        If elementQuantitySourceCell <> "" Then
+            elementQuantityCell.Formula = "=" & elementQuantitySourceCell.Worksheet.Name & "!" & elementQuantitySourceCell.Address
+        End If
+        
         
         '開始計算元件的材料數量
         For Each material In materialsList
